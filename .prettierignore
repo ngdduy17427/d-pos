@@ -1,0 +1,4 @@
+# Don't ever prettier node_modules
+node_modules
+# Don't prettier build output (make sure it's set to your correct build folder name)
+build

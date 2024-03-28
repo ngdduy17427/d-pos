@@ -1,0 +1,41 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@import "./animation.scss";
+
+:root {
+  --glb-header-height: 4rem;
+  --glb-footer-height: 4rem;
+  --glb-color: #26272c;
+  --glb-color-active: #25a218;
+  --glb-border-radius: 0.5rem;
+  --glb-bg-serve: #25a218;
+  --glb-bg-serve-late: #fbaf03;
+  --glb-bg-serve-too-late: #ec1b1b;
+  --glb-bg-overlay: #00000099;
+}
+
+body {
+  margin: 0;
+  font-size: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+  user-select: none;
+}
+
+main {
+  height: 100vh;
+  color: #fff;
+  background-color: #000;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+}

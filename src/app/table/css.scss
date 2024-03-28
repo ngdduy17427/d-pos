@@ -1,0 +1,92 @@
+.table-page {
+  height: 100%;
+  .table-page-container {
+    height: calc(100% - var(--glb-header-height));
+    padding: 1rem;
+    display: flex;
+    gap: 1rem;
+    .aside-category {
+      height: 100%;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      overflow-y: scroll;
+      scrollbar-width: none;
+      animation: slide-right 0.5s ease-in-out;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      .aside-category-card {
+        width: 120px;
+        background-color: var(--glb-color);
+        padding: 0.5rem 0;
+        border-radius: var(--glb-border-radius);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.5rem;
+        cursor: pointer;
+        &.selected {
+          background-color: var(--glb-color-active);
+        }
+      }
+    }
+    .product-container {
+      flex: 1;
+      height: 100%;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 1rem;
+      overflow-y: scroll;
+      scrollbar-width: none;
+      animation: slide-left 0.5s ease-in-out;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      .product-card {
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        .product-thumb {
+          height: 200px;
+          background: linear-gradient(
+            45deg,
+            rgba(2, 0, 36, 1) 0%,
+            rgba(37, 162, 24, 1) 50%,
+            rgba(0, 212, 255, 1) 100%
+          );
+          border-top-left-radius: var(--glb-border-radius);
+          border-top-right-radius: var(--glb-border-radius);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          img {
+            width: 140px;
+            height: 140px;
+            object-fit: contain;
+          }
+        }
+        .product-info {
+          background-color: var(--glb-color);
+          padding: 0.5rem 1rem;
+          border-bottom-left-radius: var(--glb-border-radius);
+          border-bottom-right-radius: var(--glb-border-radius);
+          h2 {
+            margin-top: 0.5rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .table-page {
+    .table-page-container {
+      .product-container {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+    }
+  }
+}

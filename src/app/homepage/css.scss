@@ -1,0 +1,41 @@
+.homepage {
+  height: 100%;
+  .table-container {
+    height: calc(100% - var(--glb-header-height));
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+    animation: slide-up 0.5s ease-in-out;
+    .table-card {
+      color: #fff;
+      background-color: var(--glb-color);
+      padding: 1rem;
+      border-radius: var(--glb-border-radius);
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      .table-name {
+        font-size: 1.25rem;
+      }
+      .table-serve-time {
+        font-size: 1.25rem;
+      }
+      .table-serve {
+        margin-top: auto;
+      }
+      &.no-order {
+        color: #808080;
+      }
+      &.serving {
+        background-color: var(--glb-bg-serve);
+      }
+      &.late {
+        background-color: var(--glb-bg-serve-late);
+      }
+      &.too-late {
+        background-color: var(--glb-bg-serve-too-late);
+      }
+    }
+  }
+}

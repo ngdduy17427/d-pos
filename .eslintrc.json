@@ -1,0 +1,38 @@
+{
+  "root": true,
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:tailwindcss/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "prettier", "react", "react-hooks", "tailwindcss"],
+  "rules": {
+    "@typescript-eslint/member-delimiter-style": "error",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/no-non-null-assertion": "error",
+    "@typescript-eslint/no-unused-vars": "off",
+    "react/button-has-type": "error",
+    "react/jsx-fragments": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/jsx-uses-react": "off",
+    "react/no-array-index-key": "error",
+    "react/no-unescaped-entities": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/self-closing-comp": "error",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "off",
+    "tailwindcss/migration-from-tailwind-2": "off",
+    "tailwindcss/no-custom-classname": "off",
+    "tailwindcss/classnames-order": "off",
+    "prettier/prettier": "off"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}
