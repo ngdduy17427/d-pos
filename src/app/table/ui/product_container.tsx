@@ -16,7 +16,7 @@ const ProductContainer = ({
 
   useEffect(() => {
     appDispatch(AppActionType.FETCH_DRINK_LIST, { categoryId: categorySelected });
-  }, [categorySelected]);
+  }, [appDispatch, categorySelected]);
 
   return (
     <section id="productContainer" className="product-container">

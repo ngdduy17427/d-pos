@@ -24,7 +24,6 @@
     "react/react-in-jsx-scope": "off",
     "react/self-closing-comp": "error",
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "off",
     "tailwindcss/migration-from-tailwind-2": "off",
     "tailwindcss/no-custom-classname": "off",
     "tailwindcss/classnames-order": "off",

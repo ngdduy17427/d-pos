@@ -24,7 +24,7 @@ const App: FC = () => {
   useEffect(() => {
     appDispatch(AppActionType.FETCH_TABLE_LIST);
     appDispatch(AppActionType.FETCH_CATEGORY_LIST);
-  }, []);
+  }, [appDispatch]);
 
   return (
     <Routes>
