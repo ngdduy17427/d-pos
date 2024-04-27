@@ -1,11 +1,11 @@
 import { MdClose } from "react-icons/md";
 
-const ButtonCloseApp = ({ className }: { className?: string }) => {
+const ButtonCloseApp = ({ className }: { className?: string }): JSX.Element => {
   return (
     <button
       type="button"
       className={className}
-      onClick={() => (document.getElementById("dialogCloseApp") as HTMLDialogElement).show()}
+      onClick={(): void => (document.getElementById("dialogCloseApp") as HTMLDialogElement).show()}
     >
       <MdClose />
     </button>

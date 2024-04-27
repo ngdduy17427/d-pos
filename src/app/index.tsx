@@ -7,7 +7,7 @@ import Homepage from "./homepage";
 import LoginPage from "./login";
 import TablePage from "./table";
 
-const App: FC = () => {
+const App: FC = (): JSX.Element => {
   const location = useLocation();
   const navigate = useNavigate();
   const {
@@ -15,13 +15,13 @@ const App: FC = () => {
     appDispatch,
   } = useAppContext();
 
-  useEffect(() => {
+  useEffect((): void => {
     if (!isLogin && location.pathname !== "/login" && location.pathname !== "/confirm") {
       navigate("/login");
     }
   }, [isLogin, location.pathname, navigate]);
 
-  useEffect(() => {
+  useEffect((): void => {
     appDispatch(AppActionType.FETCH_TABLE_LIST);
     appDispatch(AppActionType.FETCH_CATEGORY_LIST);
   }, [appDispatch]);

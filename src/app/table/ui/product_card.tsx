@@ -8,11 +8,11 @@ const ProductCard = ({
 }: {
   product: IDrink;
   handleAddProductToCart: (product: IDrink) => void;
-}) => {
+}): JSX.Element => {
   const imgRef = useRef<HTMLImageElement>(null);
 
-  const handleClickProduct = () =>
-    handleAddProductCartAnimation(product.thumbnail, imgRef).then(() =>
+  const handleClickProduct = (): Promise<void> =>
+    handleAddProductCartAnimation(product.thumbnail, imgRef).then((): void =>
       handleAddProductToCart(product)
     );
 

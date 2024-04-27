@@ -20,23 +20,24 @@ const AsideCart = ({
   itemsInCart: IDrinkInCart[];
   handleUpdateProductInCart: (product: IDrinkInCart) => void;
   handleDeleteProductFromCart: (productId: string) => void;
-}) => {
+}): JSX.Element => {
   const { appDispatch } = useAppContext();
   const navigate = useNavigate();
 
-  const { ref: asideCartRef } = useOnClickOutside(() =>
+  const { ref: asideCartRef } = useOnClickOutside<HTMLDivElement>((): void =>
     removeClassFromElement("asideCart", "open")
   );
 
   const totalPrice = useMemo(
-    () => itemsInCart?.reduce((total, item) => item.price * item.quantity + total, 0),
+    (): number =>
+      itemsInCart?.reduce((total, item): number => item.price * item.quantity + total, 0),
     [itemsInCart]
   );
 
-  const serving = () => {
+  const serving = (): void => {
     const serveTime = itemsInCart.length * parseInt(process.env.REACT_APP_SERVE_TIME as string);
 
-    setTimeout(() => {
+    setTimeout((): void => {
       const tableModified = Object.assign({}, table);
 
       tableModified.itemsInCart = [];
@@ -47,7 +48,7 @@ const AsideCart = ({
     }, serveTime + 1000);
   };
 
-  const handleUpdateTable = () => {
+  const handleUpdateTable = (): void => {
     const tableModified = Object.assign({}, table);
 
     tableModified.itemsInCart = itemsInCart;
@@ -67,18 +68,20 @@ const AsideCart = ({
           <h1 className="text-[1.5rem] font-bold">{table?.name}</h1>
           <MdClose
             className="cursor-pointer text-[1.8rem]"
-            onClick={() => removeClassFromElement("asideCart", "open")}
+            onClick={(): void => removeClassFromElement("asideCart", "open")}
           />
         </div>
         <div className="aside-cart-content">
-          {itemsInCart?.map((item) => (
-            <ProductCardAside
-              key={item.id}
-              product={item}
-              handleUpdateProductInCart={handleUpdateProductInCart}
-              handleDeleteProductFromCart={handleDeleteProductFromCart}
-            />
-          ))}
+          {itemsInCart?.map(
+            (item): JSX.Element => (
+              <ProductCardAside
+                key={item.id}
+                product={item}
+                handleUpdateProductInCart={handleUpdateProductInCart}
+                handleDeleteProductFromCart={handleDeleteProductFromCart}
+              />
+            )
+          )}
         </div>
         <div className="aside-cart-total-price">
           <h1>Total price</h1>

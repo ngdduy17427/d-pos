@@ -3,7 +3,7 @@ import Header from "components/header";
 import { useAppContext } from "context/context";
 import "./css.scss";
 
-const Homepage = () => {
+const Homepage = (): JSX.Element => {
   const {
     appContext: { tableList },
   } = useAppContext();
@@ -12,7 +12,7 @@ const Homepage = () => {
     <section className="homepage">
       <Header />
       <div className="table-container">
-        {tableList?.map((table) => <TableCard key={table.id} table={table} />)}
+        {tableList?.map((table): JSX.Element => <TableCard key={table.id} table={table} />)}
       </div>
     </section>
   );

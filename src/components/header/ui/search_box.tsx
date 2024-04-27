@@ -10,27 +10,27 @@ const SearchBox = ({
   handleAddProductToCart,
 }: {
   handleAddProductToCart?: (product: IDrink) => void;
-}) => {
+}): JSX.Element => {
   const [searchKey, setSearchKey] = useState("");
   const [searchResult, setSearchResult] = useState<IDrink[]>([]);
-  const timeoutId = useRef<any>();
+  const timeoutId = useRef<NodeJS.Timeout>();
 
-  const { ref: searchBoxRef } = useOnClickOutside(() =>
+  const { ref: searchBoxRef } = useOnClickOutside<HTMLDivElement>((): void =>
     addClassToElement("searchBoxContainer", "hide-search-result")
   );
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const value = event.target.value;
     setSearchKey(value);
 
     if (value === "") return setSearchResult([]);
 
     clearTimeout(timeoutId.current);
-    timeoutId.current = setTimeout(() => {
+    timeoutId.current = setTimeout((): void => {
       if (value === "") return setSearchResult([]);
       const _searchResult: IDrink[] = [];
 
-      drinkList.forEach((drink) => {
+      drinkList.forEach((drink): void => {
         if (drink.name.toLocaleLowerCase().includes(value.toLocaleLowerCase()))
           _searchResult.push(drink);
       });
@@ -44,7 +44,7 @@ const SearchBox = ({
       ref={searchBoxRef}
       id="searchBoxContainer"
       className="search-box-container"
-      onClick={() => removeClassFromElement("searchBoxContainer", "hide-search-result")}
+      onClick={(): void => removeClassFromElement("searchBoxContainer", "hide-search-result")}
     >
       <label className="search-box">
         <MdSearch />
@@ -59,13 +59,15 @@ const SearchBox = ({
       </label>
       {searchResult.length > 0 && (
         <div className="search-result">
-          {searchResult?.map((result) => (
-            <SearchResultItem
-              key={result.id}
-              result={result}
-              handleAddProductToCart={handleAddProductToCart}
-            />
-          ))}
+          {searchResult?.map(
+            (result): JSX.Element => (
+              <SearchResultItem
+                key={result.id}
+                result={result}
+                handleAddProductToCart={handleAddProductToCart}
+              />
+            )
+          )}
         </div>
       )}
     </div>

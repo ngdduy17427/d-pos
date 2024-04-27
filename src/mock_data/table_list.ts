@@ -1,7 +1,7 @@
 import { ITable } from "@type";
 import { uuidv4 } from "utils/utils_helper";
 
-const createTables = (numberOfTable: number) => {
+const createTables = (numberOfTable: number): ITable[] => {
   const tables: ITable[] = [];
   for (let i = 0; i < numberOfTable; i++)
     tables.push({

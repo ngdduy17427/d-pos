@@ -15,8 +15,8 @@ const ProductCardAside = ({
   product: IDrinkInCart;
   handleUpdateProductInCart: (product: IDrinkInCart) => void;
   handleDeleteProductFromCart: (productId: string) => void;
-}) => {
-  const handleUpdateAmount = (type: UpdateAmountType) => {
+}): JSX.Element => {
+  const handleUpdateAmount = (type: UpdateAmountType): void => {
     switch (type) {
       case UpdateAmountType.DECREMENT:
         product.quantity -= 1;
@@ -48,14 +48,14 @@ const ProductCardAside = ({
           <div className="counter">
             <span
               className="counter-update decrement"
-              onClick={() => handleUpdateAmount(UpdateAmountType.DECREMENT)}
+              onClick={(): void => handleUpdateAmount(UpdateAmountType.DECREMENT)}
             >
               <MdRemove className="text-[1.25rem]" />
             </span>
             <p className="counter-value">{product.quantity}</p>
             <span
               className="counter-update increment"
-              onClick={() => handleUpdateAmount(UpdateAmountType.INCREMENT)}
+              onClick={(): void => handleUpdateAmount(UpdateAmountType.INCREMENT)}
             >
               <MdAdd className="text-[1.25rem]" />
             </span>

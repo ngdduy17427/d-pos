@@ -3,16 +3,16 @@ import { FormEvent, useEffect } from "react";
 import { MdMobileScreenShare } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
-const LoginPage = () => {
+const LoginPage = (): JSX.Element => {
   const navigate = useNavigate();
   const { appContext } = useAppContext();
   const { isLogin } = appContext;
 
-  useEffect(() => {
+  useEffect((): void => {
     if (isLogin) navigate("/");
   }, [isLogin, navigate]);
 
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const onSubmit = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     navigate("/confirm");
   };
@@ -45,12 +45,12 @@ const LoginPage = () => {
         <div className="flex gap-4">
           <button
             type="button"
-            className="bg-glb-color h-[50px] w-[160px] rounded-[50px]"
-            onClick={() => window.electronAPI.send("CloseApp")}
+            className="h-[50px] w-[160px] rounded-[50px] bg-glb-color"
+            onClick={(): Promise<void> => window.electronAPI.send("CloseApp")}
           >
             <strong>CLOSE</strong>
           </button>
-          <button type="submit" className="bg-glb-color-active h-[50px] w-[160px] rounded-[50px]">
+          <button type="submit" className="h-[50px] w-[160px] rounded-[50px] bg-glb-color-active">
             <strong>COUTINUE</strong>
           </button>
         </div>

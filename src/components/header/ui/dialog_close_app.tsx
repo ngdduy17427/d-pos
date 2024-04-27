@@ -1,4 +1,4 @@
-const DialogCloseApp = () => {
+const DialogCloseApp = (): JSX.Element => {
   return (
     <dialog id="dialogCloseApp" className="dialog-close-app">
       <div className="dialog-container">
@@ -7,14 +7,16 @@ const DialogCloseApp = () => {
           <button
             type="button"
             className="h-[50px] w-[160px] rounded-[50px] bg-black"
-            onClick={() => (document.getElementById("dialogCloseApp") as HTMLDialogElement).close()}
+            onClick={(): void =>
+              (document.getElementById("dialogCloseApp") as HTMLDialogElement).close()
+            }
           >
             <strong>CANCEL</strong>
           </button>
           <button
             type="button"
-            className="bg-glb-color-active h-[50px] w-[160px] rounded-[50px]"
-            onClick={() => window.electronAPI.send("CloseApp")}
+            className="h-[50px] w-[160px] rounded-[50px] bg-glb-color-active"
+            onClick={(): Promise<void> => window.electronAPI.send("CloseApp")}
           >
             <strong>OK</strong>
           </button>

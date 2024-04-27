@@ -9,15 +9,13 @@ const AppProvider = ({
 }: {
   children: React.ReactNode;
   initialValue: IAppContext;
-}) => {
+}): JSX.Element => {
   const [appContext, setAppContext] = React.useState<IAppContext>(initialValue);
 
-  const appMemoContext = useMemo(() => appContext, [appContext]);
+  const appMemoContext = useMemo((): IAppContext => appContext, [appContext]);
   const appCallbackDispatch = useCallback(
-    (type: AppActionType, payload?: any) =>
-      React.startTransition(() =>
-        setAppContext((prevState) => appAction(prevState, { type, payload }))
-      ),
+    (type: AppActionType, payload?: any): void =>
+      setAppContext((prevState): IAppContext => appAction(prevState, { type, payload })),
     []
   );
 

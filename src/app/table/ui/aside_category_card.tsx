@@ -8,7 +8,11 @@ interface AsideCategoryCardProps {
   isSelected: boolean;
 }
 
-const AsideCategoryCard = ({ category, onClick, isSelected }: AsideCategoryCardProps) => {
+const AsideCategoryCard = ({
+  category,
+  onClick,
+  isSelected,
+}: AsideCategoryCardProps): JSX.Element => {
   return (
     <button
       type="button"
@@ -25,7 +29,7 @@ const AsideCategoryCard = ({ category, onClick, isSelected }: AsideCategoryCardP
 
 export default memo(
   AsideCategoryCard,
-  (oldProps: AsideCategoryCardProps, newProps: AsideCategoryCardProps) => {
+  (oldProps: AsideCategoryCardProps, newProps: AsideCategoryCardProps): boolean => {
     return oldProps.isSelected === newProps.isSelected;
   }
 );

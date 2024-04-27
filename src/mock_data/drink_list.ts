@@ -3,7 +3,7 @@ import vodkaPNG from "assets/vodka.png";
 import { uuidv4 } from "utils/utils_helper";
 import categoryList from "./category_list";
 
-const createDrinkList = () => {
+const createDrinkList = (): IDrink[] => {
   const drinks: IDrink[] = [];
 
   for (let i = 0; i < categoryList.length; i++)

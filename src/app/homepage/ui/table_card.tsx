@@ -1,27 +1,27 @@
 import { ITable } from "@type";
 import classNames from "classnames";
 import moment from "moment";
-import { startTransition, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 
-const TableCard = ({ table }: { table: ITable }) => {
+const TableCard = ({ table }: { table: ITable }): JSX.Element => {
   const [orderedTime, setOrderedTime] = useState(moment().diff(table.orderedAt));
 
-  const orderedItems = useMemo(() => table.itemsInCart.length, [table]);
+  const orderedItems = useMemo((): number => table.itemsInCart.length, [table]);
   const servedItems = useMemo(
-    () => table.itemsInCart.filter((item) => item.isServed).length,
+    (): number => table.itemsInCart.filter((item): boolean => item.isServed).length,
     [table]
   );
 
-  useEffect(() => {
+  useEffect((): (() => void) | undefined => {
     if (!table.isServing) return;
 
     const orderedTimer = setInterval(
-      () => startTransition(() => setOrderedTime(moment().diff(table.orderedAt))),
+      (): void => setOrderedTime(moment().diff(table.orderedAt)),
       1000
     );
 
-    return () => clearInterval(orderedTimer);
+    return (): void => clearInterval(orderedTimer);
   }, [table]);
 
   return (

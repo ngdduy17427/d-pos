@@ -14,7 +14,7 @@ const Header = ({
 }: {
   itemsInCart?: IDrinkInCart[];
   handleAddProductToCart?: (product: IDrink) => void;
-}) => {
+}): JSX.Element => {
   return (
     <Fragment>
       <header>

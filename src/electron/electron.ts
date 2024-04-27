@@ -3,22 +3,22 @@ import * as path from "node:path";
 import * as url from "node:url";
 
 const isEnvSet = "ELECTRON_IS_DEV" in process.env;
-const getFromEnv = Number.parseInt(process.env.ELECTRON_IS_DEV as string, 10) === 1;
+const getFromEnv = Number.parseInt(String(process.env.ELECTRON_IS_DEV), 10) === 1;
 const isDev = isEnvSet ? getFromEnv : !app.isPackaged;
 
 let mainWindow: BrowserWindow | null;
 
-const createWindow = () => {
+const createWindow = (): void => {
   mainWindow = new BrowserWindow({
     show: false,
     frame: false,
     webPreferences: {
       contextIsolation: true,
       preload: path.join(__dirname, "preload.js"),
-    } as Electron.WebPreferences,
+    },
   });
 
-  ipcMain.on("CloseApp", (_: IpcMainEvent, __: any[]) => app.quit());
+  ipcMain.on("CloseApp", (_: IpcMainEvent, __: any[]): void => app.quit());
 
   mainWindow.loadURL(
     isDev
@@ -33,7 +33,7 @@ const createWindow = () => {
   isDev && mainWindow.webContents.openDevTools();
   !isDev && mainWindow.removeMenu();
 
-  mainWindow.on("closed", () => {
+  mainWindow.on("closed", (): void => {
     mainWindow = null;
   });
 
@@ -41,14 +41,14 @@ const createWindow = () => {
   mainWindow.show();
 };
 
-app.on("ready", () => {
+app.on("ready", (): void => {
   createWindow();
 });
 
-app.on("window-all-closed", () => {
+app.on("window-all-closed", (): void => {
   if (process.platform !== "darwin") app.quit();
 });
 
-app.on("activate", () => {
+app.on("activate", (): void => {
   if (mainWindow === null) createWindow();
 });

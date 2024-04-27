@@ -7,26 +7,28 @@ const AsideCategory = ({
 }: {
   categorySelected: string;
   setCategorySelected: React.Dispatch<React.SetStateAction<string>>;
-}) => {
+}): JSX.Element => {
   const {
     appContext: { categoryList },
   } = useAppContext();
 
-  const handleSelectCategory = (categoryId: string) => {
+  const handleSelectCategory = (categoryId: string): void => {
     setCategorySelected(categoryId);
     document.getElementById("productContainer")?.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
     <aside className="aside-category">
-      {categoryList?.map((category) => (
-        <AsideCategoryCard
-          key={category.id}
-          category={category}
-          onClick={() => handleSelectCategory(category.id)}
-          isSelected={categorySelected === category.id}
-        />
-      ))}
+      {categoryList?.map(
+        (category): JSX.Element => (
+          <AsideCategoryCard
+            key={category.id}
+            category={category}
+            onClick={(): void => handleSelectCategory(category.id)}
+            isSelected={categorySelected === category.id}
+          />
+        )
+      )}
     </aside>
   );
 };

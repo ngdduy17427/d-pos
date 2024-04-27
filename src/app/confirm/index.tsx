@@ -4,16 +4,16 @@ import { FormEvent, useEffect } from "react";
 import { MdArrowBack } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
-const ConfirmPage = () => {
+const ConfirmPage = (): JSX.Element => {
   const navigate = useNavigate();
   const { appContext, appDispatch } = useAppContext();
   const { isLogin } = appContext;
 
-  useEffect(() => {
+  useEffect((): void => {
     if (isLogin) navigate("/");
   }, [isLogin, navigate]);
 
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const onSubmit = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
     appDispatch(AppActionType.LOGIN, {});
     navigate("/");
@@ -23,7 +23,7 @@ const ConfirmPage = () => {
     <div className="flex size-full items-center justify-center">
       <form className="flex h-[350px] w-[400px] flex-col justify-between" onSubmit={onSubmit}>
         <h1 className="text-[1.5rem]">
-          <MdArrowBack className="cursor-pointer text-[2rem]" onClick={() => navigate(-1)} />
+          <MdArrowBack className="cursor-pointer text-[2rem]" onClick={(): void => navigate(-1)} />
           <strong>
             ENTER VERIFICATION CODE
             <br />
@@ -40,7 +40,7 @@ const ConfirmPage = () => {
             disabled
           />
         </label>
-        <button type="submit" className="bg-glb-color-active h-[50px] w-[160px] rounded-[50px]">
+        <button type="submit" className="h-[50px] w-[160px] rounded-[50px] bg-glb-color-active">
           <strong>SUBMIT</strong>
         </button>
       </form>

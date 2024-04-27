@@ -10,23 +10,25 @@ const ProductContainer = ({
 }: {
   categorySelected: string;
   handleAddProductToCart: (product: IDrink) => void;
-}) => {
+}): JSX.Element => {
   const { appContext, appDispatch } = useAppContext();
   const { drinkList } = appContext;
 
-  useEffect(() => {
+  useEffect((): void => {
     appDispatch(AppActionType.FETCH_DRINK_LIST, { categoryId: categorySelected });
   }, [appDispatch, categorySelected]);
 
   return (
     <section id="productContainer" className="product-container">
-      {drinkList?.map((drink) => (
-        <ProductCard
-          key={drink.id}
-          product={drink}
-          handleAddProductToCart={handleAddProductToCart}
-        />
-      ))}
+      {drinkList?.map(
+        (drink): JSX.Element => (
+          <ProductCard
+            key={drink.id}
+            product={drink}
+            handleAddProductToCart={handleAddProductToCart}
+          />
+        )
+      )}
     </section>
   );
 };

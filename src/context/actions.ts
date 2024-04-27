@@ -1,4 +1,4 @@
-import { IAppContext } from "@type";
+import { IAppContext, ITable } from "@type";
 import categoryList from "mock_data/category_list";
 import drinkList from "mock_data/drink_list";
 import tableList from "mock_data/table_list";
@@ -16,7 +16,7 @@ export interface AppActionProps {
   payload: any;
 }
 
-export const appAction = (state: IAppContext, action: AppActionProps) => {
+export const appAction = (state: IAppContext, action: AppActionProps): IAppContext => {
   switch (action.type) {
     case AppActionType.LOGIN:
       return {
@@ -36,12 +36,14 @@ export const appAction = (state: IAppContext, action: AppActionProps) => {
     case AppActionType.FETCH_DRINK_LIST:
       return {
         ...state,
-        drinkList: drinkList.filter((drink) => drink.categoryId === action.payload.categoryId),
+        drinkList: drinkList.filter(
+          (drink): boolean => drink.categoryId === action.payload.categoryId
+        ),
       };
     case AppActionType.UPDATE_TABLE:
       return {
         ...state,
-        tableList: state.tableList.map((table) => {
+        tableList: state.tableList.map((table): ITable => {
           if (table.id === action.payload.table.id) table = action.payload.table;
 
           return table;
